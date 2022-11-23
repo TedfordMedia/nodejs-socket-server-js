@@ -9,9 +9,12 @@ const port = 80;
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/html/index.html');
 });
+app.get('/chat', (req, res) => {
+  res.sendFile(__dirname + '/html/chat.html');
+});
 
 server.listen(port, hostname, () => {
 
-  console.log(`v1.0 Server running at http://${hostname}:${port}/`);
+  console.log(`v1.1 Server running at http://${hostname}:${port}/`);
 
 });
