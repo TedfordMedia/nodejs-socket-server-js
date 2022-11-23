@@ -7,7 +7,6 @@ const hostname = '0.0.0.0';
 const port = 80;
 
 app.get('/', (req, res) => {
-  // res.send('<h1>Hello world app get </h1>');
   res.sendFile(__dirname + '/html/index.html');
 });
 
