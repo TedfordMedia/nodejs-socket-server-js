@@ -15,6 +15,6 @@ app.get('/chat', (req, res) => {
 
 server.listen(port, hostname, () => {
 
-  console.log(`v1.1 Server running at http://${hostname}:${port}/`);
+  console.log(`v1.23 Server running at http://${hostname}:${port}/`);
 
 });
