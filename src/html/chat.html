@@ -62,11 +62,14 @@
 </head>
 
 <body>
+  <h1>Chat test 1</h1>
   <ul id="messages"></ul>
   <form id="form" action="">
     <input id="input" autocomplete="off" /><button>Send</button>
   </form>
-  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+    integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+    crossorigin="anonymous"></script>
   <script>
     var socket = io();
   </script>
