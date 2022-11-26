@@ -1,11 +1,18 @@
-const http = require('http');
-const express = require('express');
+import http from 'http';
+import express from 'express';
+import { Server } from "socket.io";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import mainTools from './mainTools.js';
+
+
 const app = express();
 const server = http.createServer(app);
-const { Server } = require("socket.io");
 const hostname = '0.0.0.0';
 const port = 80;
 const io = new Server(server);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/html/index.html');
@@ -14,15 +21,11 @@ app.get('/', (req, res) => {
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/html/chat.html');
 });
+mainTools.setupIo(io);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-  socket.on('chat message', (msg) => {
-    console.log('received chat message: ' + msg);
-  });
+  mainTools.checkSocketIncoming(socket);
 });
 
 server.listen(port, hostname, () => {
