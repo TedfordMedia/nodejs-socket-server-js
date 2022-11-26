@@ -1,4 +1,8 @@
 console.log('v1.1 threescene.js loaded');
+
+import threeTools from './threeTools.js';
+threeTools.init();
+
 const container = document.getElementById('container');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(

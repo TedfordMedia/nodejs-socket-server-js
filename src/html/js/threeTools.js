@@ -2,8 +2,8 @@
 function threeTools() {
     this.theName = "mainTools";
 
-    this.mainPart = function () {
-        console.log("mainTools.mainPart()");
+    this.init = function () {
+        console.log("threeTools initialised");
     }
     
 }
