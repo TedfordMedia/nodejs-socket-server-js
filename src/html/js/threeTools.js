@@ -23,6 +23,12 @@ function threeTools() {
         directionalLight.position.set(1, 1, 1).normalize();
         scene.add(directionalLight);
     }
+    this.makeCube = function (scene) {
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+    }
 
 }
 export default new threeTools();

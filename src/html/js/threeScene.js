@@ -14,12 +14,13 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = threeTools.renderer;
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// const geometry = new THREE.BoxGeometry();
+// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+// const cube = new THREE.Mesh(geometry, material);
+// scene.add(cube);
 
 threeTools.setLighting(scene);
+threeTools.makeCube(scene);
 
 camera.position.z = 5;
 
