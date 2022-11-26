@@ -8,7 +8,8 @@ const __dirname = dirname(__filename);
 
 export function doRouting(app) {
     console.log('setup routing');
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + '/src/html'));
+    app.use(express.static(__dirname + '/html'));
     app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, "./html/index.html"));
     });

@@ -17,7 +17,7 @@ function mainTools() {
         console.log("mainTools.checkSocketIncoming()");
         socket.on('chat message', (msg) => {
             console.log('received chat message: ' + msg);
-            socket.broadcast.emit('message', msg);
+            socket.broadcast.emit('chat message', msg);
         });
         socket.on('message', (msg) => {
             console.log('received message: ' + msg);
