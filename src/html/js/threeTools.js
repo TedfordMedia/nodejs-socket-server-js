@@ -9,6 +9,7 @@ function threeTools() {
     this.renderer = null;
     this.scene = null;
     this.camera = null;
+    this.controls = null;
 
     this.init = function () {
         console.log("threeTools initialised");
@@ -37,6 +38,23 @@ function threeTools() {
         camera.position.z = 5;
         this.camera = camera;
         return camera;
+    }
+    this.useOrbitControls = function () {
+
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.controls.listenToKeyEvents(window); // optional
+
+        //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+
+        this.controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+        this.controls.dampingFactor = 0.05;
+
+        this.controls.screenSpacePanning = false;
+
+        this.controls.minDistance = 100;
+        this.controls.maxDistance = 500;
+
+        this.controls.maxPolarAngle = Math.PI / 2;
     }
     this.setLighting = function () {
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);

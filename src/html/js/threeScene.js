@@ -6,6 +6,7 @@ threeTools.setBasicCamera();
 threeTools.setLighting();
 threeTools.makeCube();
 threeTools.setBackdrop();
+threeTools.useOrbitControls();
 
 window.addEventListener( 'resize', threeTools.onWindowResize );
  
