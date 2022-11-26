@@ -17,7 +17,6 @@ function mainTools() {
         console.log("mainTools.checkSocketIncoming()");
         socket.on('chat message', (msg) => {
             console.log('received chat message: ' + msg);
-            // zthis.io.emit('message', "io message this is a test " + msg);
             socket.broadcast.emit('message', msg);
         });
         socket.on('disconnect', () => {
