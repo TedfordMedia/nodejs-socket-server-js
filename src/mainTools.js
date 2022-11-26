@@ -25,25 +25,3 @@ function mainTools() {
     }
 }
 export default new mainTools();
-
-
-        // var xthis = this;
-
-        // this.socket.on('subscribe', function (x) {
-        //     xthis.subscribeToRoom(x);
-        // });
-        // this.socket.on('sendNewPass', function (x) {
-        //     insertPassword(socket, x);
-        // });
-        // this.socket.on('login', function (x) {
-        //     xthis.do_melogin(x, request, socket);
-        // });
-        // this.socket.on('logofffffff', function (x) {
-        //     xthis.do_melogoff(x, request, socket);
-        // });
-        // this.socket.on('sendPassInsertUser', function (x) {
-        //     xthis.sendPassInsertUser(x, request, socket);
-        // });
-        // this.socket.on('room message', function (x) {
-        //     xthis.processRoomMessage(x);//
-        // });

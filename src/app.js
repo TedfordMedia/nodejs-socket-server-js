@@ -4,6 +4,27 @@ import { Server } from "socket.io";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import mainTools from './mainTools.js';
+import  dTools  from './discordTools.js';
+dTools.mainPart();
+
+// const { Client, GatewayIntentBits } = require('discord.js');
+
+// console.log('Client setup 1/2');
+
+// const client = new Client({
+//     intents: [
+//         GatewayIntentBits.Guilds,
+//         GatewayIntentBits.GuildMessages,
+//         GatewayIntentBits.MessageContent,
+//         GatewayIntentBits.GuildMembers,
+//     ],
+// });
+//     client.login(process.env.DISCORDJS_BOT_TOKEN);
+
+// console.log('Client setup 2/2')
+
+// myTools.clientListener(client); 
+
 
 
 const app = express();
@@ -14,6 +35,11 @@ const io = new Server(server);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+
+import dotenv from "dotenv"
+dotenv.config()
+
+app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/html/index.html');
 });
