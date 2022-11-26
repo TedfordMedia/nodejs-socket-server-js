@@ -17,9 +17,11 @@ const __dirname = dirname(__filename);
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/html/index.html');
 });
-
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/html/chat.html');
+});
+app.get('/three', (req, res) => {
+  res.sendFile(__dirname + '/html/three.html');
 });
 mainTools.setupIo(io);
 
