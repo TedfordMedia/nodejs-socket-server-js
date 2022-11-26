@@ -19,6 +19,9 @@ function mainTools() {
             console.log('received chat message: ' + msg);
             socket.broadcast.emit('message', msg);
         });
+        socket.on('message', (msg) => {
+            console.log('received message: ' + msg);
+        });
         socket.on('disconnect', () => {
             console.log('user disconnected');
         });
