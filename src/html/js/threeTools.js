@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
+// import { OrbitControls } from 'three/addons/controls/OrbitControls'
 
 function threeTools() {
     this.theName = "mainTools";
