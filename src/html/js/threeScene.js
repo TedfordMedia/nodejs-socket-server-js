@@ -4,7 +4,7 @@ import threeTools from './threeTools.js';
 threeTools.init();
 
 
-const scene = new THREE.Scene();
+const scene = threeTools.scene;
 const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -19,7 +19,7 @@ const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+threeTools.setLighting(scene);
 
 camera.position.z = 5;
 
