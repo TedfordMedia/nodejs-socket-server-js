@@ -47,12 +47,12 @@ function threeTools() {
         //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
 
         this.controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-        this.controls.dampingFactor = 0.05;
+        // this.controls.dampingFactor = 0.05;
 
-        this.controls.screenSpacePanning = false;
+        // this.controls.screenSpacePanning = false;
 
-        this.controls.minDistance = 100;
-        this.controls.maxDistance = 500;
+        // this.controls.minDistance = 100;
+        // this.controls.maxDistance = 500;
 
         this.controls.maxPolarAngle = Math.PI / 2;
     }
