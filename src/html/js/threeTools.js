@@ -47,7 +47,7 @@ function threeTools() {
         const cube = new THREE.Mesh(geometry, material);
         this.scene.add(cube);
     }
-    this.onWindowResize(camera, renderer) {
+    this.onWindowResize = function () {
 
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
