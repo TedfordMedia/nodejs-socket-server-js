@@ -3,7 +3,7 @@ console.log('v1.1 threescene.js loaded');
 import threeTools from './threeTools.js';
 threeTools.init();
 
-const container = document.getElementById('container');
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     75,
@@ -12,12 +12,7 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.shadowMap.enabled = true;
-container.appendChild(renderer.domElement);
+const renderer = threeTools.renderer;
 
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
