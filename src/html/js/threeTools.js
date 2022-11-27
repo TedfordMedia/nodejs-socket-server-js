@@ -7,6 +7,7 @@ function threeTools() {
     this.theName = "mainTools";
     this.renderer = null;
     this.scene = null;
+    this.objectsGroup = null;
     this.camera = null;
     this.controls = null;
 
@@ -21,6 +22,9 @@ function threeTools() {
         container.appendChild(renderer.domElement);
         this.renderer = renderer;
         this.scene = new THREE.Scene();
+        this.objectsGroup = new THREE.Group();
+        this.scene.add(this.objectsGroup);
+
     }
     this.setBackdrop = function () {
         this.scene.background = new THREE.Color(0xe0e0e0);
@@ -55,14 +59,17 @@ function threeTools() {
         directionalLight.position.set(1, 1, 1).normalize();
         this.scene.add(directionalLight);
     }
-    this.loadGlb = function (url, x=1, y=1, z=1, scale) {
+    this.loadGlb = function (url, x = 1, y = 1, z = 1, scale) {
         const loader = new GLTFLoader();
         loader.load(url, (gltf) => {
             const root = gltf.scene;
             root.position.set(x, y, z);
             root.scale.set(scale, scale, scale);
-            this.scene.add(root);
+            this.objectsGroup.add(root);
         });
+    }
+    this.loadSomeModel = function (msg) {
+        console.log('loadSomeModel', msg);
     }
     this.makeMeshFloor = function () {
         const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }));
@@ -74,12 +81,33 @@ function threeTools() {
         grid.material.transparent = true;
         this.scene.add(grid)
     }
+    this.giveRandomColor = function () {
+        return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
     this.makeCube = function () {
         const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+        const material = new THREE.MeshStandardMaterial({ color: this.giveRandomColor() });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(0, 0.5, 0);
-        this.scene.add(cube);
+        this.objectsGroup.add(cube);
+        this.setObjectPositionRandom(cube);
+    }
+    this.makeSphere = function () {
+        const geometry = new THREE.SphereGeometry(.5, 32, 16);
+        const material = new THREE.MeshBasicMaterial({ color: this.giveRandomColor() });
+        const sphere = new THREE.Mesh(geometry, material);
+        this.objectsGroup.add(sphere);
+        this.setObjectPositionRandom(sphere);
+    }
+    this.setObjectPositionRandom = function (obj) {
+        obj.position.x = Math.random() * 4 - 2;
+        obj.position.y = Math.random() * 2;
+        obj.position.z = Math.random() * 4 - 2;
+    }
+
+    this.makeText = function () {
+        console.log('i should make text')
     }
 
 }

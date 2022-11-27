@@ -19,7 +19,6 @@ function onWindowResize() {
 
     threeTools.camera.aspect = window.innerWidth / window.innerHeight;
     threeTools.camera.updateProjectionMatrix();
-
     threeTools.renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
