@@ -17,14 +17,15 @@ function sockClientTools() {
             window.scrollTo(0, document.body.scrollHeight);
         });
     }
-    this.checkThreeChat = function (socket) {
+    this.checkThreeChat = function (socket, threeTools) {
         console.log('check for Three chat messages')
         socket.on('three message', function (msg) {
-            zthis.processThreeMessage(msg)
+            zthis.processThreeMessage(msg, threeTools)
         });
     };
-    this.processThreeMessage = function (msg) {
+    this.processThreeMessage = function (msg, threeTools) {
         console.log('Received a Three.js message from the server!', msg);
+        threeTools.makeCube();
     };
 }
 export default new sockClientTools();

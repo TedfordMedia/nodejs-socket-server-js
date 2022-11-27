@@ -3,11 +3,10 @@ import sockClientTools from '../sockClient.js';
 
 var socket = io();
 sockClientTools.checkSocketClientBasic(socket);
-sockClientTools.checkThreeChat(socket);
+sockClientTools.checkThreeChat(socket, threeTools);
 threeTools.init();
 threeTools.setBasicCamera();
 threeTools.setLighting();
-threeTools.makeCube();
 threeTools.setBackdrop();
 threeTools.useOrbitControls();
 threeTools.makeMeshFloor();
