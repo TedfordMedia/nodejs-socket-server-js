@@ -55,6 +55,15 @@ function threeTools() {
         directionalLight.position.set(1, 1, 1).normalize();
         this.scene.add(directionalLight);
     }
+    this.loadGlb = function (url, x=1, y=1, z=1, scale) {
+        const loader = new GLTFLoader();
+        loader.load(url, (gltf) => {
+            const root = gltf.scene;
+            root.position.set(x, y, z);
+            root.scale.set(scale, scale, scale);
+            this.scene.add(root);
+        });
+    }
     this.makeMeshFloor = function () {
         const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }));
         mesh.rotation.x = - Math.PI / 2;

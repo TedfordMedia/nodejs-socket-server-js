@@ -1,5 +1,24 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import dotenv from "dotenv"
+import request from 'request';
+
+import fs from 'fs';
+function download(url) {
+    request.get(url)
+        .on('error', console.error)
+        .on('response', function (response) {
+            console.log('hello response ', response.statusCode) // 200
+            console.log('response header', response.headers['content-type']) // 'image/png'
+        })
+        .pipe(fs.createWriteStream('meme.png'));
+
+    // const fs = require('fs');
+    // const imgFile = fs.readFileSync(filePath);
+    // const imgBase64 = new Buffer(imgFile).toString('base64');
+    // socket.broadcast.emit('img', imgBase64);
+}
+
+
 dotenv.config()
 
 function dTools() {
@@ -42,11 +61,19 @@ function dTools() {
             }
         });
         client.on('messageCreate', message => {
-            console.log('Message Create: ', message.content, 'from: ', message.author.username);
             if (message.content.includes('/three')) {
                 if (this.io) {
                     message.channel.send('I sent update to Three.js clients');
-                    this.io.emit('three message', { someProperty: 'some value', otherProperty: 'other value' });
+                    var Attachment = (message.attachments)
+                    if (Attachment) {
+                        var myAttachments = [];
+                        Attachment.forEach(attachment => {
+                            console.log('temporary code here')
+                            download(attachment.url);
+                            myAttachments.push({ url: attachment.proxyURL })
+                        });
+                    }
+                    this.io.emit('three message', { fullMsg: message.content, attachments: myAttachments });
                 } else {
                     message.channel.send('No Three.js clients connected');
                 }

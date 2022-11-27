@@ -23,9 +23,25 @@ function sockClientTools() {
             zthis.processThreeMessage(msg, threeTools)
         });
     };
+    this.get_url_extension = function (url) {
+        console.log('get_url_extension: ', url)
+        return url.split(/[#?]/)[0].split('.').pop().trim();
+    }
     this.processThreeMessage = function (msg, threeTools) {
         console.log('Received a Three.js message from the server!', msg);
-        threeTools.makeCube();
+
+        if (msg.attachments && msg.attachments.length > 0) {
+            msg.attachments.forEach(attachment => {
+                console.log('attachment: ', attachment)
+                console.log(attachment.url);
+                if (this.get_url_extension(attachment.url) === "glb") {
+                    threeTools.loadGlb(attachment.url);
+                }
+            });
+        } else {
+            threeTools.makeCube();
+        }
+
     };
 }
 export default new sockClientTools();
