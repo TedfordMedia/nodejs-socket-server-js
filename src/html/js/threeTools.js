@@ -3,8 +3,6 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 
-// import { OrbitControls } from 'three/addons/controls/OrbitControls'
-
 function threeTools() {
     this.theName = "mainTools";
     this.renderer = null;
@@ -29,7 +27,6 @@ function threeTools() {
         this.scene.fog = new THREE.Fog(0xe0e0e0, 20, 100);
     }
     this.setBasicCamera = function () {
-
         const camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
@@ -42,7 +39,6 @@ function threeTools() {
         return camera;
     }
     this.useOrbitControls = function () {
-
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.listenToKeyEvents(window); // optional
         this.controls.enableDamping = true;
