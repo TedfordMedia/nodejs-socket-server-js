@@ -38,8 +38,8 @@ function threeTools() {
             0.1,
             1000
         );
-        camera.position.z = 5;
-        camera.position.y = 5;
+        camera.position.z = 6;
+        camera.position.y = 3;
         camera.position.x = -2;
         this.camera = camera;
         return camera;
@@ -107,18 +107,22 @@ function threeTools() {
         obj.position.z = THREE.MathUtils.randFloat(-10, 10);
         this.moveCamTargetGsap(obj);
     }
-    this.moveCamTargetGsap = function (obj) {
-        gsap.to(zthis.camera, {
-            duration: 1,
-            x: obj.position.x,
-            y: obj.position.y,
-            z: obj.position.z - 5,
-            onUpdate: function () {
-                zthis.camera.updateProjectionMatrix();
-            }
-        });
 
-        gsap.to(zthis.controls.target, {
+    this.moveCamTargetGsap = function (obj) {
+
+        var t1 = gsap.timeline();
+        // t1.to(zthis.camera.position, {
+        //     duration: 1,
+        //     x: obj.position.x,
+        //     y: obj.position.y,
+        //     z: obj.position.z - 5,
+        //     onUpdate: function () {
+        //         zthis.camera.updateProjectionMatrix();
+        //         // zthis.controls.update();
+        //     }
+        // });
+        var t2 = gsap.timeline();
+        t2.to(zthis.controls.target, {
             duration: 1,
             x: obj.position.x,
             y: obj.position.y,
@@ -129,7 +133,6 @@ function threeTools() {
         });
 
     }
-
     this.makeText = function () {
         console.log('i should make text')
     }
