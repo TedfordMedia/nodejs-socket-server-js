@@ -10,6 +10,7 @@ function threeTools() {
     this.objectsGroup = null;
     this.camera = null;
     this.controls = null;
+    let zthis = this;
 
     this.init = function () {
         console.log("threeTools initialised");
@@ -101,9 +102,32 @@ function threeTools() {
         this.setObjectPositionRandom(sphere);
     }
     this.setObjectPositionRandom = function (obj) {
-        obj.position.x = Math.random() * 4 - 2;
-        obj.position.y = Math.random() * 2;
-        obj.position.z = Math.random() * 4 - 2;
+        obj.position.x = THREE.MathUtils.randFloat(-10, 10);
+        obj.position.y = THREE.MathUtils.randFloat(0, 3);
+        obj.position.z = THREE.MathUtils.randFloat(-10, 10);
+        this.moveCamTargetGsap(obj);
+    }
+    this.moveCamTargetGsap = function (obj) {
+        gsap.to(zthis.camera, {
+            duration: 1,
+            x: obj.position.x,
+            y: obj.position.y,
+            z: obj.position.z - 5,
+            onUpdate: function () {
+                zthis.camera.updateProjectionMatrix();
+            }
+        });
+
+        gsap.to(zthis.controls.target, {
+            duration: 1,
+            x: obj.position.x,
+            y: obj.position.y,
+            z: obj.position.z,
+            onUpdate: function () {
+                zthis.controls.update();
+            }
+        });
+
     }
 
     this.makeText = function () {
