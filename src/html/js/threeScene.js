@@ -7,6 +7,9 @@ threeTools.setLighting();
 threeTools.makeCube();
 threeTools.setBackdrop();
 threeTools.useOrbitControls();
+threeTools.makeMeshFloor();
+
+console.log(threeTools.camera.position);
 
 window.addEventListener( 'resize', threeTools.onWindowResize );
  
