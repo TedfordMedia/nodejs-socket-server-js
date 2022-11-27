@@ -60,13 +60,22 @@ function threeTools() {
         directionalLight.position.set(1, 1, 1).normalize();
         this.scene.add(directionalLight);
     }
-    this.loadGlb = function (url, x = 1, y = 1, z = 1, scale) {
+    this.loadGlb = function (url, scale = 1) {
+        let x = THREE.MathUtils.randFloat(-10, 10);
+        let y = 0;
+        let z = THREE.MathUtils.randFloat(-10, 10);
+        if (url.includes('sofa')) {
+            y = 0
+        }
+
         const loader = new GLTFLoader();
         loader.load(url, (gltf) => {
+            console.log('hello loaded');
             const root = gltf.scene;
             root.position.set(x, y, z);
             root.scale.set(scale, scale, scale);
-            this.objectsGroup.add(root);
+            zthis.objectsGroup.add(root);
+            zthis.moveCamTargetGsap(root);
         });
     }
     this.loadSomeModel = function (msg) {

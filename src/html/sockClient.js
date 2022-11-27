@@ -38,22 +38,24 @@ function sockClientTools() {
         });
     }
     this.processThreeMessage = function (msg, threeTools) {
-        console.log('Received a Three.js message from the server!', msg);
 
         if (msg.attachments && msg.attachments.length > 0) {
             this.processAttachments(msg, threeTools)
         } else {
-            console.log(msg)
             if (msg.fullMsg.includes('cube')) {
-                console.log('cube')
                 threeTools.makeCube();
             }
             if (msg.fullMsg.includes('sphere')) {
-                console.log('sphere')
                 threeTools.makeSphere();
             }
+            if (msg.fullMsg.includes('sofa')) {
+                console.log('sofa going to download')
+                threeTools.loadGlb('sofa.glb',.05, true);
+            }
             if (msg.fullMsg.includes('text')) {
-                console.log('text')
+                console.log('text', msg.fullMsg)
+                console.log('Received a Three.js message from the server!', msg);
+
                 threeTools.makeText();
             }
 
