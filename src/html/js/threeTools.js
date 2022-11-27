@@ -35,6 +35,7 @@ function threeTools() {
         );
         camera.position.z = 5;
         camera.position.y = 5;
+        camera.position.x = -2;
         this.camera = camera;
         return camera;
     }
@@ -70,11 +71,6 @@ function threeTools() {
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(0, 0.5, 0);
         this.scene.add(cube);
-    }
-    this.onWindowResize = function () {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
 }

@@ -4,6 +4,7 @@ dotenv.config()
 
 function dTools() {
     this.theName = "mainTools";
+    this.io = null;
 
     this.mainPart = function () {
         console.log("mainTools.mainPart()");
@@ -22,6 +23,11 @@ function dTools() {
         this.clientListener(client);
 
     }
+    this.setupIo = function (io) {
+        if (!io) { console.log('error no io'); return; }
+        this.io = io;
+        console.log("dTools.setupIo completed");
+    }
     this.clientListener = function (client) {
         console.log('Discord Client Listening for messages');
         if (!client) { console.log('clientListener: client is null'); return; }
@@ -37,8 +43,13 @@ function dTools() {
         });
         client.on('messageCreate', message => {
             console.log('Message Create: ', message.content, 'from: ', message.author.username);
-            if (message.content === '!ping') {
-                message.channel.send('Pong 123.');
+            if (message.content.includes('/three')) {
+                if (this.io) {
+                    message.channel.send('I sent update to Three.js clients');
+                    this.io.emit('three message', { someProperty: 'some value', otherProperty: 'other value' });
+                } else {
+                    message.channel.send('No Three.js clients connected');
+                }
             }
         });
     }

@@ -1,8 +1,9 @@
+import sockClientTools from './sockClient.js';
 var socket = io();
+
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 var messages = document.getElementById('messages');
-import sockClientTools from './sockClient.js';
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -18,8 +19,3 @@ form.addEventListener('submit', function (e) {
 
 sockClientTools.checkSocketClientBasic(socket);
 sockClientTools.checkSocketChat(socket);
-
-///is socket reveived message add to div 
-socket.on('message', function (msg) {
-
-});

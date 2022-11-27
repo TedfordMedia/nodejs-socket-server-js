@@ -16,6 +16,7 @@ const io = new Server(server);
 doRouting(app);
 
 mainTools.setupIo(io);
+dTools.setupIo(io);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
