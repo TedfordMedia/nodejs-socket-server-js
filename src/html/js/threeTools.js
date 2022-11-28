@@ -10,6 +10,8 @@ function threeTools() {
     this.objectsGroup = null;
     this.camera = null;
     this.controls = null;
+    this.mixers = [];
+    this.clock = new THREE.Clock();;
     let zthis = this;
 
     this.init = function () {
@@ -70,14 +72,30 @@ function threeTools() {
 
         const loader = new GLTFLoader();
         loader.load(url, (gltf) => {
-            console.log('hello loaded');
             const root = gltf.scene;
             root.position.set(x, y, z);
             root.scale.set(scale, scale, scale);
             zthis.objectsGroup.add(root);
             zthis.moveCamTargetGsap(root);
+            zthis.doAnimations(gltf);
         });
     }
+    this.doAnimations = function (root) {
+        const mixer = new THREE.AnimationMixer(root.scene);
+        this.mixers.push(mixer)
+        if (mixer.clipAction(root.animations[0])) {
+            const action = mixer.clipAction(root.animations[0]);
+            action.play();
+        }
+
+    }
+    this.mainAnimate = function () {
+        const mixerUpdateDelta = this.clock.getDelta();
+        this.mixers.forEach((mixer) => {
+            mixer.update(mixerUpdateDelta);
+        });
+    }
+
     this.loadSomeModel = function (msg) {
         console.log('loadSomeModel', msg);
     }
