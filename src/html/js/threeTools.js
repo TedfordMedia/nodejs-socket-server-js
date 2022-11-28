@@ -82,8 +82,9 @@ function threeTools() {
     }
     this.doAnimations = function (root) {
         const mixer = new THREE.AnimationMixer(root.scene);
-        this.mixers.push(mixer)
-        if (mixer.clipAction(root.animations[0])) {
+
+        if (root.animations.length > 0) {
+            this.mixers.push(mixer)
             const action = mixer.clipAction(root.animations[0]);
             action.play();
         }

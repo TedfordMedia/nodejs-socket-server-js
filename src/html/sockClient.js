@@ -1,3 +1,6 @@
+import { modelsList } from "./js/modelsList.js";
+
+
 function sockClientTools() {
     let zthis = this;
     this.checkSocketClientBasic = function (socket) {
@@ -37,6 +40,14 @@ function sockClientTools() {
             }
         });
     }
+    this.checkModelsArray = function (msg, threeTools) {
+        modelsList.forEach(model => {
+            if (msg.fullMsg.includes(model.name)) {
+                threeTools.loadGlb(model.url, model.scale);
+            }
+        });
+
+    }
     this.processThreeMessage = function (msg, threeTools) {
 
         if (msg.attachments && msg.attachments.length > 0) {
@@ -48,18 +59,13 @@ function sockClientTools() {
             if (msg.fullMsg.includes('sphere')) {
                 threeTools.makeSphere();
             }
-            if (msg.fullMsg.includes('sofa')) {
-                threeTools.loadGlb('sofa.glb',.05);
-            }
-            if (msg.fullMsg.includes('dancer')) {
-                threeTools.loadGlb('robot6.glb',1);
-            }
             if (msg.fullMsg.includes('text')) {
                 console.log('text', msg.fullMsg)
                 console.log('Received a Three.js message from the server!', msg);
-
                 threeTools.makeText();
             }
+
+            this.checkModelsArray(msg, threeTools);
 
         }
 
