@@ -49,8 +49,10 @@ function sockClientTools() {
                 threeTools.makeSphere();
             }
             if (msg.fullMsg.includes('sofa')) {
-                console.log('sofa going to download')
-                threeTools.loadGlb('sofa.glb',.05, true);
+                threeTools.loadGlb('sofa.glb',.05);
+            }
+            if (msg.fullMsg.includes('dancer')) {
+                threeTools.loadGlb('robot6.glb',1);
             }
             if (msg.fullMsg.includes('text')) {
                 console.log('text', msg.fullMsg)

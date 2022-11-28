@@ -23,6 +23,7 @@ function onWindowResize() {
 
 }
 function animate() {
+    threeTools.mainAnimate();
     requestAnimationFrame(animate);
     threeTools.renderer.render(threeTools.scene, threeTools.camera);
 }
